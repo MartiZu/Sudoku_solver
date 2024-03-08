@@ -9,22 +9,9 @@ function App() {
     setSolved(true);
   };
 
-  const handleRefresh = () => {
-    setSolved(false);
-  };
-
   return (
     <>
-      <Grid
-        solve={solved}
-        handleSolve={handleSolve}
-        handleRefresh={handleRefresh}
-      />
-      <div className="btn-container">
-        <button className="btn" onClick={handleSolve}>
-          SOLVE
-        </button>
-      </div>
+      <Grid solve={solved} handleSolve={handleSolve} setSolved={setSolved} />
     </>
   );
 }

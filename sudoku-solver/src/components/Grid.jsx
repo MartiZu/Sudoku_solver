@@ -1,16 +1,21 @@
 import { useState, useEffect } from "react";
 
-export default function Grid({ solve, handleSolve, handleRefresh }) {
+export default function Grid({ solve, handleSolve, setSolved }) {
   const [clickedCells, setClickedCells] = useState({});
   const [cellValues, setCellValues] = useState({});
+
+  const handleReset = () => {
+    setCellValues({});
+    setClickedCells({});
+    setSolved(false);
+  };
 
   useEffect(() => {
     if (solve) {
       const solvedValues = solveSudoku(cellValues);
       setCellValues(solvedValues);
-      handleRefresh();
     }
-  }, [solve, cellValues, handleRefresh]);
+  }, [solve]);
 
   const solveSudoku = (inputValues) => {
     const initialGrid = convertValuesToGrid(inputValues);
@@ -120,38 +125,48 @@ export default function Grid({ solve, handleSolve, handleRefresh }) {
   };
 
   return (
-    <div className="grid">
-      {[...Array(9)].map((_, row) =>
-        [...Array(9)].map((_, col) => {
-          // const cellId = `${row}${col}`;
-          const cellId = row * 9 + col + 1;
-          const isClicked = clickedCells[cellId];
-          const cellValue = cellValues[cellId];
+    <>
+      <div className="grid">
+        {[...Array(9)].map((_, row) =>
+          [...Array(9)].map((_, col) => {
+            // const cellId = `${row}${col}`;
+            const cellId = row * 9 + col + 1;
+            const isClicked = clickedCells[cellId];
+            const cellValue = cellValues[cellId];
 
-          return (
-            <div
-              key={cellId}
-              className={`cell ${isClicked ? "clicked" : ""}`}
-              id={cellId}
-              onClick={() => handleCellClick(cellId)}
-            >
-              {isClicked ? (
-                <input
-                  className="input-field"
-                  type="text"
-                  value={cellValue || ""}
-                  onChange={(e) => handleInputChange(cellId, e.target.value)}
-                  onBlur={() =>
-                    setClickedCells({ ...clickedCells, [cellId]: false })
-                  }
-                />
-              ) : (
-                <span className="cell-value">{cellValue}</span>
-              )}
-            </div>
-          );
-        })
-      )}
-    </div>
+            return (
+              <div
+                key={cellId}
+                className={`cell ${isClicked ? "clicked" : ""}`}
+                id={cellId}
+                onClick={() => handleCellClick(cellId)}
+              >
+                {isClicked ? (
+                  <input
+                    className="input-field"
+                    type="text"
+                    value={cellValue || ""}
+                    onChange={(e) => handleInputChange(cellId, e.target.value)}
+                    onBlur={() =>
+                      setClickedCells({ ...clickedCells, [cellId]: false })
+                    }
+                  />
+                ) : (
+                  <span className="cell-value">{cellValue}</span>
+                )}
+              </div>
+            );
+          })
+        )}
+      </div>
+      <div className="btn-container">
+        <button className="btn" onClick={handleSolve}>
+          SOLVE
+        </button>
+        <button className="reset-btn" onClick={handleReset}>
+          RESET GRID
+        </button>
+      </div>
+    </>
   );
 }
