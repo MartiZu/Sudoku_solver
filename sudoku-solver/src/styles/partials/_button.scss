@@ -1,0 +1,55 @@
+.btn-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.btn {
+  width: 60%;
+  height: 2rem;
+  margin-top: 5rem;
+  margin-inline: 0.5rem;
+  padding: 0.1rem;
+  background-color: #2ff924;
+  font-size: xx-large;
+  font-weight: 700;
+  color: #fff;
+  border: none;
+  box-shadow: 0 6px 50px #2ff924;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30%;
+    height: 100%;
+    background-image: url("yoda.jpg");
+    background-size: cover;
+    background-position: center;
+    transform: translateX(-100%);
+    transition: transform 0.85s ease;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: 30%;
+    background-image: url("force.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+
+  &:hover {
+    // background-color: #d33b45;
+
+    &::after {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
