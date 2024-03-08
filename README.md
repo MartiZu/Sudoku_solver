@@ -11,7 +11,10 @@ In a galaxy far, far away, on the peaceful planet of Sudokine, the Jedi Council 
 [Jedi Sudoku Solver](https://jedi-sudoku-solver.vercel.app/)
 
 ## Or clone the repo
-1. `Clone the repository: git clone https://github.com/MartiZu/sudoku-solver.git`
+1. `git clone https://github.com/MartiZu/Sudoku_solver.git`
 2. `cd sudoku-solver`
 3. `npm install`
 4. `npm start`
+
+# Remember!!!!
+## No Repeats: No repeated digits in any row, column, or 3x3 subgrid. If you make an error, just delete the incorrect input.
