@@ -11,6 +11,12 @@ export default function Grid({ solve, handleSolve, setSolved }) {
   };
 
   useEffect(() => {
+    // console.log(cellValues);
+    // if (solve && !(Object.keys(cellValues).length >= 35)) {
+    //   alert("Please inout 35 numbers");
+    //   setSolved(false);
+    // } else {
+    // }
     if (solve) {
       const solvedValues = solveSudoku(cellValues);
       setCellValues(solvedValues);
@@ -46,7 +52,6 @@ export default function Grid({ solve, handleSolve, setSolved }) {
         grid[row][col] = 0;
       }
     }
-
     // If no valid number is found for the current cell, backtrack
     return null;
   };
@@ -61,6 +66,7 @@ export default function Grid({ solve, handleSolve, setSolved }) {
         }
       }
     }
+    // console.log(emptyCells);
     return emptyCells;
   };
 
@@ -79,10 +85,13 @@ export default function Grid({ solve, handleSolve, setSolved }) {
         (_, col) => Number(inputValues[row * 9 + col + 1]) || 0
       )
     );
+    console.log(grid);
+    // console.log(grid);
     return grid;
   };
 
   const convertGridToValues = (grid) => {
+    console.log(grid);
     const values = grid.flat().reduce((acc, value, index) => {
       if (value !== 0) {
         const cellId = index + 1;
@@ -90,6 +99,7 @@ export default function Grid({ solve, handleSolve, setSolved }) {
       }
       return acc;
     }, {});
+    console.log(values);
     return values;
   };
 
@@ -114,13 +124,15 @@ export default function Grid({ solve, handleSolve, setSolved }) {
 
   const handleCellClick = (id) => {
     setClickedCells((prevClickedCells) => {
-      return { ...prevClickedCells, [id]: true };
+      let result = { ...prevClickedCells, [id]: true };
+      return result;
     });
   };
 
   const handleInputChange = (id, value) => {
     setCellValues((prevCellValues) => {
-      return { ...prevCellValues, [id]: value };
+      let result = { ...prevCellValues, [id]: value };
+      return result;
     });
   };
 

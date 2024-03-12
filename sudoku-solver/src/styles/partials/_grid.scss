@@ -1,7 +1,7 @@
 .grid {
   display: grid;
-  grid-template-columns: repeat(9, 4.5rem);
-  grid-template-rows: repeat(9, 4.5rem);
+  grid-template-columns: repeat(9, 3rem);
+  grid-template-rows: repeat(9, 3rem);
   justify-content: center;
   box-shadow: 8px 8px 30px rgb(255, 230, 0);
   .cell {
